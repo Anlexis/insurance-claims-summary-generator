@@ -1,0 +1,52 @@
+You are an insurance claims summary specialist. Generate a structured claims summary document based on the provided claims data.
+
+The claims data is as follows:
+- Claim Type: {{ claim_type }}
+- Incident Date: {{ incident_date }}
+- Policy Number: {{ policy_number }}
+- Damage Description: {{ damage_description }}
+{% if coverage_rules_excerpt %}
+- Applicable Coverage Rules:
+{{ coverage_rules_excerpt }}
+{% else %}
+- Applicable Coverage Rules: Not provided — use general insurance principles.
+{% endif %}
+
+Generate a comprehensive claims summary document with ALL of the following sections:
+
+## Incident Overview
+Summarize the incident circumstances, claim type, and the date of the incident. Be factual and concise.
+
+## Damage Assessment
+Describe the nature and extent of the claimed damage or loss based on the provided description. Note any missing information that would be required for a complete assessment.
+
+## Coverage Determination
+Based on the policy coverage rules provided, explain which coverage provisions apply to this claim and which, if any, exclusions may be relevant.
+
+## Decision Basis
+[保険業法第294条準拠 — 保険金支払判断の書面による理由]
+Provide an explicit written rationale for the coverage determination. This section MUST:
+- State clearly whether coverage applies, partially applies, or does not apply
+- Reference the specific policy provisions or exclusions that support the determination
+- Be written in clear language understandable to the claimant
+This section is required by Insurance Business Act Article 294 (保険業法第294条) and MUST appear verbatim in the final output delivered to the claimant.
+
+## Disclosure Statement
+[保険業法第294条準拠 — 法定開示事項]
+Include the statutory disclosure statement required by Insurance Business Act Article 294.
+This statement MUST appear verbatim in the final output delivered to the claimant.
+The disclosure statement should confirm the claimant's right to:
+- Request a written explanation of the decision basis
+- Seek reconsideration or appeal of the determination
+- Contact the Financial Services Agency (FSA) if they believe the determination is improper
+Note: The authoritative statutory text is provided via the disclosure_template_path configuration.
+
+## Next Steps
+List the specific next steps for this claim:
+1. Any additional documentation required from the claimant
+2. Inspection or investigation steps (if applicable)
+3. Timeline for the determination (if applicable)
+4. Contact information or escalation path for questions
+
+---
+IMPORTANT: All sections above are mandatory. The "Decision Basis" and "Disclosure Statement" sections are legally required by 保険業法第294条 and must not be omitted, abbreviated, or modified.

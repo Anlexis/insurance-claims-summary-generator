@@ -1,0 +1,24 @@
+# Runtime parameters — loaded by AgentRegistry, passed as Graph(config=...).
+# Separate from config/agent.yaml (the static manifest).
+
+max_retry: 3
+timeout_s: 60   # Claims summary generation may take time with large documents
+
+# Document rendering. A caller may override this per request via
+# input_context.output_format; the value here is the default.
+output:
+  format: "markdown"        # "markdown" (human-readable) | "json" (programmatic consumption)
+
+# Claims-domain limits, read through ClaimsDocumentService.
+claims:
+  disclosure_template_path: "prompts/disclosure_294.j2"
+  # Maximum number of characters carried from a policy-coverage excerpt into
+  # the summary. Longer excerpts are truncated at this bound.
+  max_coverage_excerpt_chars: 2000
+  # Claim types recognized by ClaimsIntakeParseNode.
+  recognized_claim_types:
+    - "auto"          # 自動車事故
+    - "medical"       # 医療・生命保険
+    - "property"      # 財物損害
+    - "liability"     # 賠償責任
+    - "travel"        # 旅行保険
